@@ -15,13 +15,15 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        CAEmitterLayer *emitter = [[CAEmitterLayer alloc] init];
+        CAEmitterLayer *emitter = [CAEmitterLayer layer];
+        emitter.backgroundColor = [UIColor redColor].CGColor;
+        
         [emitter setPosition:CGPointMake(self.bounds.size.width/2, 0)];
         emitter.emitterSize = self.bounds.size;
         emitter.emitterShape = kCAEmitterLayerRectangle;
         
         CAEmitterCell *emitterCell = [[CAEmitterCell alloc] init];
-        emitterCell.contents = (__bridge id _Nullable)([UIImage imageNamed:@"flake.png"].CGImage);
+        emitterCell.contents = (__bridge id _Nullable)([UIImage imageNamed:@"flake"].CGImage);
         emitterCell.birthRate = 200;
         emitterCell.lifetime = 3.5;
         emitterCell.color = [UIColor whiteColor].CGColor;
@@ -40,9 +42,14 @@
         emitterCell.alphaRange = 0.5;
         emitterCell.alphaSpeed = -0.15;
         emitter.emitterCells = @[emitterCell];
+        [self.layer addSublayer:emitter];
     }
     return self;
 }
+
+//+ (Class) layerClass {
+//    return [CAEmitterLayer class];
+//}
 
 /*
 // Only override drawRect: if you perform custom drawing.
