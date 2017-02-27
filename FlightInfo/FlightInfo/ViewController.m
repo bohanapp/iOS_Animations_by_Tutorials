@@ -119,9 +119,9 @@ typedef enum : NSInteger {
         self.flightStatus.text = data.flightStatus;
     }
     
-//    // schedule next flight
+// schedule next flight
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        self.changeFlight(to: data.isTakingOff ? parisToRome : londonToParis)
+//self.changeFlight(to: data.isTakingOff ? parisToRome : londonToParis)
         [self changeFlightTo:data.isTakingOff?parisToRome:londonToParis animated:YES];
     });
 }
